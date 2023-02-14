@@ -36,9 +36,8 @@
 
 					// Images (in the format of 'url': 'alignment').
 						images: {
-							'images/bg01.jpg': 'center',
-							'images/bg02.jpg': 'center',
-							'images/bg03.jpg': 'center'
+							'https://cdn.pixabay.com/photo/2019/06/28/22/15/sky-4305114_960_720.jpg': 'center',
+							'https://cdn.pixabay.com/photo/2012/04/14/16/37/sky-34536_960_720.png': 'center',
 						},
 
 					// Delay.
@@ -167,5 +166,6 @@
 				});
 
 		})();
+		
 
 })();

@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<!--
+	Eventually by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>강수연 캡스톤디자인2</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="static/css/main.css" />
+	</head>
+	<header id="header">
+		<from>
+		<h2>BERT 기반 개체명 인식을 통한 자동 문제 생성</h2>
+			<h2>AI web service</h2>
+		<p>  <br> </p>
+	</from>
+	</header>
+	<body>
+			<h2>빈칸 문제</h2>
+
+		<div class = 'question_data' id = 'question_data_id' style="display:none"  >
+			{{questions}}
+		</div>
+		<div class="empty_qusetion" id="empty_qusetion_id">
+			
+		</div>
+		<button style = "width: 25%;" onclick="showMsg_empty()">빈칸 정답</button>
+		<div>
+			<!-- 아래 dialog 태그 영역이 메시지 창 -->
+			<dialog id="myMsgDialog_empty">
+				<span style="color: black; ">빈칸 문제 정답</span>
+
+				<div class="empty_answer" id="empty_answer_id">
+				
+				</div>
+
+				<input type="button" id="mButton" onclick="closeMsg_empty()" value=" 확 인 " >
+			</dialog>
+		</div>
+		<script>
+			function showMsg_empty(){
+				var dialog = document.getElementById("myMsgDialog_empty");
+				dialog.showModal();
+			}
+
+			
+			function closeMsg_empty(){
+				var dialog = document.getElementById("myMsgDialog_empty");
+				dialog.close();
+			}
+		</script>
+
+
+		 <h2>OX 문제</h2>
+		 <div class="ox_qusetion" id="ox_qusetion_id">
+	
+		</div>
+		  <button style = "width: 25%;" onclick="showMsg_ox()">OX 정답</button>
+		  <div>
+			  <!-- 아래 dialog 태그 영역이 메시지 창 -->
+			  <dialog id="myMsgDialog_ox">
+				  <span style="color: black;">OX 문제 정답</span>
+
+				  <div class="ox_answer" id="ox_answer_id">
+		
+				</div>
+
+				  <input type="button" id="mButton" onclick="closeMsg_ox()" value=" 확 인 " >
+			  </dialog>
+		  </div>
+
+		  <script>
+			function showMsg_ox(){
+				var dialog_ox = document.getElementById("myMsgDialog_ox");
+				dialog_ox.showModal();
+			}
+
+			
+			function closeMsg_ox(){
+				var dialog_ox = document.getElementById("myMsgDialog_ox");
+				dialog_ox.close();
+			}
+		</script>
+
+
+		<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="https://github.com/Kangsuyeon01" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+					<li><a href="https://sillon-coding.tistory.com/" class="icon fa-envelope"><span class="label">Tistoty</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Kangsuyeon</li><li>Credits: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="static/js/main.js"></script>
+			<script>
+				var empty_qusetion_id,empty_answer_id,ox_qusetion_id,ox_answer_id,question_data_id;
+
+				var e_q; // 빈칸문제
+				var e_a; // 빈칸 문제 답
+				var ox_q; // OX 문제
+				var ox_a; // OX 문제 답
+				init();
+				
+
+				
+				
+					var e_q; // 빈칸문제
+					var e_a; // 빈칸 문제 답
+					var ox_q; // OX 문제
+					var ox_a; // OX 문제 답
+
+
+					function data_load(data){
+					var tmp_data = eval(data);
+
+					for (var i in tmp_data){
+						if (i == 0){
+						e_q = tmp_data[0];
+						}
+						else if (i == 1){
+						e_a = tmp_data[1];
+						}
+						else if (i == 2){
+						ox_q = tmp_data[2];
+						}
+						else if (i == 3){
+						ox_a = tmp_data[3];      
+						}
+
+					}
+					return e_q,e_a,ox_q,ox_a;
+
+					}
+					function init(){
+					qusetion_data_id = document.getElementById("question_data_id").innerText;
+					empty_qusetion_id = document.getElementById("empty_qusetion_id");
+					empty_answer_id = document.getElementById("empty_answer_id");
+					ox_qusetion_id = document.getElementById("ox_qusetion_id");
+					ox_answer_id = document.getElementById("ox_answer_id");
+					e_q,e_a,ox_q,ox_a = data_load(qusetion_data_id);
+					setProblem();
+				}
+				function setProblem(){
+					var e_q_sort = "";
+					for (var i in e_q){
+						e_q_sort += "<span style=\"font: 100% / 1.6 kdm;\">" + 'Q' + [i] +'. '+  e_q[i] + '\n'+  "</span>" +' <br>';
+					}
+					var e_a_sort = "";
+					for (var i in e_a){
+						e_a_sort += "<span style=\"font: 100% / 1.6 kdm;\">"+'A' + [i] +'. '+  e_a[i] + '\n'+ "</span>"+' <br>';
+					}
+					var ox_q_sort = "";
+					for (var i in ox_q){
+						ox_q_sort += "<span style=\"font: 100% / 1.6 kdm;\">"+'Q' + [i] +'. '+  ox_q[i] + '\n'+ "</span>"+' <br>';
+					}
+					var ox_a_sort = "";
+					for (var i in ox_a){
+						ox_a_sort += "<span style=\"font: 100% / 1.6 kdm;\">"+'A' + [i] +'. '+  ox_a[i] + '\n' + "</span>"+' <br>';
+					}
+					
+					
+
+					empty_qusetion_id.innerHTML = e_q_sort;
+					empty_answer_id.innerHTML = e_a_sort;
+					ox_qusetion_id.innerHTML = ox_q_sort;
+					ox_answer_id.innerHTML = ox_a_sort;
+				}
+
+			</script>
+
+	</body>
+</html>

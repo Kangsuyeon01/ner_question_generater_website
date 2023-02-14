@@ -64,12 +64,24 @@ input, select, textarea {
 @-ms-viewport {
   width: device-width; }
 
-body {
-  -ms-overflow-style: scrollbar; }
+  body::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
+}
 
-@media screen and (max-width: 480px) {
+body::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #217af4; /* 스크롤바의 색상 */
+    
+    border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: rgba(33, 122, 244, .1);  /*스크롤바 뒷 배경 색상*/
+}
+
+@media screen and (max-width: 600px) {
   html, body {
-    min-width: 320px; } }
+    min-width: 400px; } }
 
 html {
   box-sizing: border-box; }
@@ -79,7 +91,7 @@ html {
 
 html, body {
   height: 100%;
-  overflow-x: hidden;
+  overflow-x: visible;
   width: 100%; }
   @media screen and (max-height: 640px) {
     html, body {
@@ -226,6 +238,35 @@ body {
     -webkit-transform: translateX(-25%);
     -ms-transform: translateX(-25%);
     transform: translateX(-25%); } }
+    #loading {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  left:0;
+}
+
+@keyframes spinner {
+  from {transform: rotate(0deg); }
+  to {transform: rotate(360deg);}
+}
+
+#loading .spinner {
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  margin-top: -32px;
+  margin-left: -32px;
+  border-radius: 50%;
+  border: 8px solid transparent;
+  border-top-color: #f19022;
+  border-bottom-color: #f19022;
+  animation: spinner .8s ease infinite;
+}
 
 /* Type */
 body, input, select, textarea {
@@ -257,11 +298,11 @@ a {
   -ms-transition: border-bottom-color 0.2s ease, color 0.2s ease;
   transition: border-bottom-color 0.2s ease, color 0.2s ease;
   border-bottom: dotted 1px rgba(255, 255, 255, 0.25);
-  color: #1cb495;
+  color: 	#687CDF;
   text-decoration: none; }
   a:hover {
     border-bottom-color: transparent;
-    color: #1cb495 !important;
+    color: #687CDF!important;
     text-decoration: none; }
 
 strong, b {
@@ -324,7 +365,7 @@ blockquote {
   padding: 0.5em 0 0.5em 2em; }
 
 code {
-  background: rgba(255, 255, 255, 0.125);
+  background: 	#4B89DC;
   border-radius: 6px;
   border: solid 2px rgba(255, 255, 255, 0.35);
   font-family: "Courier New", monospace;
@@ -479,7 +520,7 @@ form {
       transform: scale(1);
       opacity: 1; }
     form .message.success {
-      color: #1cb495; }
+      color: #687CDF; }
       form .message.success:before {
         content: '\f00c'; }
     form .message.failure {
@@ -604,8 +645,8 @@ textarea {
     -webkit-animation: focus 0.1s;
     -ms-animation: focus 0.1s;
     animation: focus 0.1s;
-    background-color: rgba(255, 255, 255, 0.125);
-    border-color: #1cb495; }
+    background-color: linear-gradient(lightCyan, skyBlue, deepSkyBlue);
+    border-color: #687CDF; }
 
 select {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' preserveAspectRatio='none' viewBox='0 0 40 40'%3E%3Cpath d='M9.4,12.3l10.4,10.4l10.4-10.4c0.2-0.2,0.5-0.4,0.9-0.4c0.3,0,0.6,0.1,0.9,0.4l3.3,3.3c0.2,0.2,0.4,0.5,0.4,0.9 c0,0.4-0.1,0.6-0.4,0.9L20.7,31.9c-0.2,0.2-0.5,0.4-0.9,0.4c-0.3,0-0.6-0.1-0.9-0.4L4.3,17.3c-0.2-0.2-0.4-0.5-0.4-0.9 c0-0.4,0.1-0.6,0.4-0.9l3.3-3.3c0.2-0.2,0.5-0.4,0.9-0.4S9.1,12.1,9.4,12.3z' fill='rgba(255, 255, 255, 0.35)' /%3E%3C/svg%3E");
@@ -684,14 +725,14 @@ input[type="radio"] {
       width: 1.65em; }
   input[type="checkbox"]:checked + label:before,
   input[type="radio"]:checked + label:before {
-    background: #1cb495;
-    border-color: #1cb495;
+    background: #687CDF;
+    border-color: #687CDF;
     color: #ffffff;
     content: '\f00c'; }
   input[type="checkbox"]:focus + label:before,
   input[type="radio"]:focus + label:before {
-    border-color: #1cb495;
-    box-shadow: 0 0 0 2px #1cb495; }
+    border-color: #687CDF;
+    box-shadow: 0 0 0 2px #687CDF; }
 
 input[type="checkbox"] + label:before {
   border-radius: 6px; }
@@ -733,7 +774,7 @@ button,
   -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
   -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
-  background-color: #1cb495;
+  background-color: #687CDF;
   border-radius: 6px;
   border: 0;
   color: #ffffff !important;
@@ -751,13 +792,13 @@ button,
   input[type="button"]:hover,
   button:hover,
   .button:hover {
-    background-color: #1fcaa7; }
+    background-color: #687CDF; }
   input[type="submit"]:active,
   input[type="reset"]:active,
   input[type="button"]:active,
   button:active,
   .button:active {
-    background-color: #199e83; }
+    background-color: #687CDF; }
   input[type="submit"].disabled, input[type="submit"]:disabled,
   input[type="reset"].disabled,
   input[type="reset"]:disabled,
@@ -885,3 +926,5 @@ button,
       left: auto;
       margin: 1em 0 0 0;
       position: relative; } }
+
+
